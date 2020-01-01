@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Happy New Year!!</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html,
+    body {
+      height: 100%;
+      box-sizing: border-box;
+    }
+    button:focus,
+    button:active {
+      border: 0;
+      outline: 0;
+    }
+    #app {
+      height: 100%;
+    }
+    .container {
+      display: flex;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      background-color: #f6f9fc;
+    }
+    .btn {
+      display: block;
+      margin: auto;
+      width: 43vw;
+      padding: 2vw 0;
+      max-width: 200px;
+      border-radius: 10px;
+      background-color: #72cc96;
+      color: #fff;
+      font-family: sans-serif;
+      font-size: 1.8em;
+      box-shadow: 0 3px 5px 0px #00000080;
+      font-weight: bolder;
+      position: relative;
+      z-index: 1;
+    }
+    .container>span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 1s linear;
+      display: block;
+      color: #fff;
+      border-radius: 50%;
+      background-color: #8BCDCD;
+      width: 40px;
+      font-size: 1.5em;
+      text-align: center;
+      line-height: 40px;
+      font-family: sans-serif;
+      box-shadow: 0 1px 5px 0px #00000080;
+      font-weight: bolder;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <button class="btn">
+        새해 복 많이<br>받으세요!
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const button = document.querySelector('.btn');
+    const container = document.querySelector('.container');
+
+    button.addEventListener('click', function() {
+      const ranNum = Math.round(Math.random() * 80) + 40;
+      const maxWidth = Math.round(window.innerWidth / 2);
+      const maxHeight = Math.round(window.innerHeight / 2);
+
+      for (let idx = 0; idx <= ranNum; idx++) {
+        const minus1 = Math.round(Math.random() * 2) > 1 ? -1 : 1;
+        const minus2 = Math.round(Math.random() * 2) > 1 ? -1 : 1;
+        const ranTop = Math.round(Math.random() * maxWidth) + 100;
+        const ranLeft = Math.round(Math.random() * maxHeight) + 100;
+        const span = document.createElement('span');
+
+        span.innerText = '복';
+
+        container.append(span);
+        
+        setTimeout(function() {
+          span.style.transform = 'translate(' + (ranTop * minus1) + 'px, ' + (ranLeft * minus2) + 'px)';
+          span.style.opacity = 0;
+
+          setTimeout(function() {
+            span.remove();
+          }, 1000);
+        }, 10);
+      }
+    });
+  </script>
+</body>
+</html>
